@@ -4,6 +4,7 @@ import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import { config } from 'dotenv';
 import { dbconnection } from './database/dbConnection.js';
+import  messageRouter from './router/messageRouter.js'
 
 const app = express();
 
@@ -28,7 +29,9 @@ app.use(
         useTempFiles:true,
         tempFileDir:"/tmp/",
     })
-)
+);
+
+app.use("/api/v1/message", messageRouter)
 
 dbconnection();
 
